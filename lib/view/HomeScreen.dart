@@ -51,20 +51,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String getAgeString() {
     int years = (ageInDays / 365).floor();
-    int remainingDays = (ageInDays % 365).floor();
+    int remainingDays = (years * 365).floor();
     int hours = (ageInDays * 24).floor();
     int minutes = (ageInDays * 24 * 60).floor();
 
-    return "Your Age is \n $years years,\n"
-        " $remainingDays days,\n"
-        " $hours hours, and $minutes minutes";
+    return "Your Age in years and days is \n$years years,"
+        " $remainingDays days,\n\n"
+        "calculate with Hours \n$hours hours, and $minutes minutes";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AGE CALCULATOR'),
+        title: Text('AGE CALCULATOR', style: TextStyle(fontWeight: FontWeight.bold),),
         backgroundColor: Colors.purple,
       ),
       body: Center(
@@ -73,9 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             OutlinedButton(
               onPressed: _showPicker,
-              child: Text(selectedYear != null
-                  ? selectedYear.toString()
-                  : 'Select the Year of Birth'),
+              child: Text('Select Your Date of Birth'),
             ),
             Padding(padding: EdgeInsets.all(10.0)),
             Text(
